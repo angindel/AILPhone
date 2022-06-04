@@ -10,7 +10,7 @@
 #include <QTextStream>
 #include <QDir>
 #include <QSqlError>
-#include <QDebug>
+//#include <QDebug>
 #include <QSqlResult>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -363,7 +363,6 @@ void MainWindow::initPhone()
     QString y = dt.toString("yy");
     QString m = dt.toString("M");
     QString d = dt.toString("d");
-    qDebug() << now << y << m << d;
     QString bulanIni = m + "/%/" + y;
     QString bulanKemarin = QString::number(m.toInt() - 1) + "/%/" + y;
 
@@ -413,6 +412,19 @@ void MainWindow::initPhone()
     ui->textEdit_2->setText(QString::number(totBulanKemarin));
     ui->textEdit_3->setText(QString::number(totBulanIni));
     ui->textEdit_4->setText(QString::number(totHariIni));
+}
+
+void MainWindow::deleteDataPhone(int id)
+{
+    QSqlQuery *q = new QSqlQuery(db);
+    q->prepare("DELETE FROM TELP WHERE ID=?");
+    q->addBindValue(id);
+    if(!q->exec())
+    {
+        QMessageBox msg;
+        msg.setText("DELETE FAILED");
+        msg.exec();
+    }
 }
 
 int MainWindow::initDb()
@@ -508,6 +520,14 @@ void MainWindow::on_actionPrint_triggered()
 
 void MainWindow::on_actionRefresh_triggered()
 {
+    readAndDisplayTable();
+}
+
+
+void MainWindow::on_actiondelete_triggered()
+{
+    QModelIndexList indexes = ui->tableView->selectionModel()->selectedIndexes();
+    deleteDataPhone(indexes.at(0).data().toInt());
     readAndDisplayTable();
 }
 
