@@ -316,6 +316,7 @@
     </property>
     <addaction name="actionPrint"/>
     <addaction name="actionRefresh"/>
+    <addaction name="actiondelete"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -336,6 +337,11 @@
    </property>
    <property name="text">
     <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actiondelete">
+   <property name="text">
+    <string>delete</string>
    </property>
   </action>
  </widget>
