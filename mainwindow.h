@@ -33,6 +33,8 @@ private slots:
 
     void on_actionRefresh_triggered();
 
+    void on_actiondelete_triggered();
+
 private:
     void putData(const QByteArray &data);
     Ui::MainWindow *ui;
@@ -50,5 +52,6 @@ private:
     void procFile(const QByteArray &data);
     QString ptgl(QString tgl);
     void initPhone();
+    void deleteDataPhone(int id);
 };
 #endif // MAINWINDOW_H
