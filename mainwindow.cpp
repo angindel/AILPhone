@@ -164,6 +164,7 @@ void MainWindow::readAndDisplayTable()
         QString diald = query.value(5).toString();
         QString durasid = query.value(6).toString();
         QString cosd = cost(durasid);
+        durasid = durasid.replace("'",":").replace('\"', "");
         total += cosd.toULong();
 
         model->setData(no, nod);
